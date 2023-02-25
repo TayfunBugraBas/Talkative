@@ -31,9 +31,7 @@ namespace Talkative.Source.ViewModels
         }
         public void OnAppearing() { 
             base.OnAppearing();
-            Speakers.Add("asd");
-            Speakers.Add("asd");
-            Speakers.Add("asd");
+           
 
         }
       

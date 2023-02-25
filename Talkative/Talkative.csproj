@@ -39,7 +39,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -49,24 +48,57 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Inter-Black.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Light.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Inter-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Thin.ttf" />
+	  <None Remove="Resources\Images\boy.png" />
+	  <None Remove="Resources\Images\email.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\homeicon.png" />
+	  <None Remove="Resources\Images\images.png" />
+	  <None Remove="Resources\Images\images1.png" />
+	  <None Remove="Resources\Images\indir1.png" />
+	  <None Remove="Resources\Images\indir2.png" />
+	  <None Remove="Resources\Images\indir3.png" />
+	  <None Remove="Resources\Images\location.png" />
+	  <None Remove="Resources\Images\Pembe1.png" />
+	  <None Remove="Resources\Images\plus.png" />
+	  <None Remove="Resources\Images\Polygon1.png" />
+	  <None Remove="Resources\Images\rec22.png" />
+	  <None Remove="Resources\Images\Rectangle1.png" />
+	  <None Remove="Resources\Images\Rectangle2.png" />
+	  <None Remove="Resources\Images\rectangle4.png" />
+	  <None Remove="Resources\Images\student.png" />
+	  <None Remove="Resources\Images\test.png" />
+	  <None Remove="Resources\Images\user.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="DocumentFormat.OpenXml" Version="2.19.0" />
+	  <PackageReference Include="FirebaseAuthentication.net" Version="3.7.2" />
+	  <PackageReference Include="FirebaseDatabase.net" Version="3.3.3" />
 	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.273-pre" />
 	  <PackageReference Include="System.Speech" Version="7.0.0" />
 	  <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Source\Models\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Source\Pages\GroupsPage.xaml.cs">
-	    <DependentUpon>GroupsPage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="Source\Pages\GroupsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\Pages\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\Pages\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Source\Pages\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

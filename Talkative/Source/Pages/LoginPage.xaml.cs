@@ -1,8 +1,8 @@
 namespace Talkative.Source.Pages;
 
-public partial class GroupsPage : ContentPage
+public partial class LoginPage : ContentPage
 {
-	public GroupsPage()
+	public LoginPage()
 	{
 		InitializeComponent();
 	}

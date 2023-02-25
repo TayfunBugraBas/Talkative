@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Talkative.Source.Pages.LoginPage"
+             Title="LoginPage"
+              xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic">
+    <ContentPage.Content>
+    <StackLayout
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="WhiteSmoke"
+       >
+
+            <AbsoluteLayout
+                 HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="WhiteSmoke"
+                
+                >
+                <Image Source="Pembe1.png"
+
+                    AbsoluteLayout.LayoutBounds="0,0.04"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    >
+                </Image>
+                <Image Source="rec22.png"
+
+                    AbsoluteLayout.LayoutBounds="1,0.7"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    >
+                </Image>
+                <StackLayout
+                      HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                    AbsoluteLayout.LayoutBounds="0.5,0.8"
+                    AbsoluteLayout.LayoutFlags="PositionProportional">
+
+               
+                <Label
+                    Text="Giriş Yap"
+                    FontSize="40"
+                    FontAttributes="Bold"
+                    FontFamily="Inter-ExtraBold"
+                     VerticalOptions="Start"
+                   
+                    ></Label>
+                <Line BackgroundColor="#E056FD"
+                      WidthRequest="200"
+                      HeightRequest="5"
+                      HorizontalOptions="Start"
+                      ></Line>
+                <Entry
+                    Placeholder="E-Mail"
+                    Margin="0,10,0,0"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    FontFamily="Inter-ExtraBold"
+                    >
+                    <!--Texte binding yap-->
+                </Entry>
+                <Line BackgroundColor="Black"
+                      WidthRequest="300"
+                      HeightRequest="2"
+                     
+                      ></Line>
+                <Entry
+                    Placeholder="Şifre"
+                    IsPassword="True"
+                    Margin="0,10,0,0"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    FontFamily="Inter-ExtraBold"
+                   >
+                    <!--Texte binding yap-->
+                </Entry>
+                <Line BackgroundColor="Black"
+                      WidthRequest="300"
+                      HeightRequest="2"
+                      ></Line>
+
+                    <Button
+                    Margin="0,20,0,0"
+                    Text="Giriş Yap"
+                    TextColor="WhiteSmoke"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    FontFamily="Inter-ExtraBold" 
+                    CornerRadius="30"
+                    BackgroundColor="#30336B"></Button>
+                    
+                    <Button
+                    Margin="0,20,0,0"
+                    Text="Kayıt Ol"
+                    TextColor="WhiteSmoke"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    FontFamily="Inter-ExtraBold" 
+                    CornerRadius="30"
+                    BackgroundColor="#130F40"></Button>
+                    <Label
+                    Margin="0,20,0,0"
+                    Text="Şifremi Unuttum"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    FontFamily="Inter-ExtraBold"
+                     
+                   
+                    ></Label>
+                    
+                    
+                </StackLayout>
+
+
+
+            </AbsoluteLayout>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+
+</ContentPage>

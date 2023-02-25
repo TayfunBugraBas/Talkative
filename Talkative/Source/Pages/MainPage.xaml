@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Talkative.MainPage"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic">
+    
+    <ContentPage.Content>
+
+    <ScrollView>
+
+        <StackLayout
+            Orientation="Vertical"
+           
+            >
+                <ListView
+                    ItemsSource="{Binding Speakers}"
+                   
+                    RowHeight="50"
+                    x:Name="SpeakerList"
+                    >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    BackgroundColor="PaleVioletRed">
+
+                                    <Label
+                                        Text="{Binding .}">
+
+                                    </Label>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                        
+                    </ListView.ItemTemplate>
+
+
+                </ListView>
+                <Button
+                    Text="Tıkla"
+                    Command="{Binding SecondPageCommand}"></Button>
+
+
+            </StackLayout>
+    </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

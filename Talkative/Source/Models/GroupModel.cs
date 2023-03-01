@@ -8,5 +8,16 @@ namespace Talkative.Source.Models
 {
     public class GroupModel
     {
+        public string GroupID { get; set; }
+        public string groupUserID { get; set; }
+        public string groupName { get; set; }
+        public string groupIMGName { get; set; }
+
+
+
+
+
+
+
     }
 }

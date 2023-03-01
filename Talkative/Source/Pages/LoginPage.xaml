@@ -4,7 +4,9 @@
              x:Class="Talkative.Source.Pages.LoginPage"
              Title="LoginPage"
               xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="Automatic">
+             prism:ViewModelLocator.AutowireViewModel="Automatic"
+             x:Name="LgPage"
+            >
     <ContentPage.Content>
     <StackLayout
         HorizontalOptions="FillAndExpand"
@@ -30,7 +32,9 @@
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     >
                 </Image>
-                <StackLayout
+            
+
+            <StackLayout
                       HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
                     AbsoluteLayout.LayoutBounds="0.5,0.8"
@@ -87,7 +91,9 @@
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold" 
                     CornerRadius="30"
-                    BackgroundColor="#30336B"></Button>
+                    BackgroundColor="#30336B"
+                    Command="{Binding RegisterPageCommand}"    
+                        ></Button>
                     
                     <Button
                     Margin="0,20,0,0"
@@ -97,23 +103,36 @@
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold" 
                     CornerRadius="30"
-                    BackgroundColor="#130F40"></Button>
+                    BackgroundColor="#130F40"
+                    Command="{Binding RegisterPageCommand}"    
+                    >
+                       
+                       
+                    </Button>
+
                     <Label
                     Margin="0,20,0,0"
                     Text="Şifremi Unuttum"
                     FontSize="12"
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold"
+                    
                      
                    
-                    ></Label>
+                    >
+                        <Label.Behaviors>
+                            <prism:EventToCommandBehavior>
+                                
+                            </prism:EventToCommandBehavior>
+                        </Label.Behaviors>
+                    </Label>
                     
                     
                 </StackLayout>
-
-
-
             </AbsoluteLayout>
+
+
+
 
 
         </StackLayout>

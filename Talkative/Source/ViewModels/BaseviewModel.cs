@@ -8,7 +8,7 @@ namespace Talkative.Source.ViewModels
 {
     public class BaseviewModel : BindableBase, IPageLifecycleAware, INavigatedAware, IInitialize
     {
-        private INavigationService _navigationService { get; set; }
+        public INavigationService _navigationService { get; set; }
         public BaseviewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;

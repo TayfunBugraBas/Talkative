@@ -10,7 +10,8 @@ public static class PlatformInitializer
         containerRegistry.RegisterForNavigation<NavigationPage>();
         containerRegistry.RegisterForNavigation<MainPage,MainPageViewModel>();
         containerRegistry.RegisterForNavigation<GroupsPage,GroupsPageViewModel>();
-        containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+        containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel> ();
+        containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
 
     }
 }
@@ -26,6 +27,8 @@ public static class MauiProgram
             {
                 prism.RegisterTypes(container =>
                 {
+         
+  
                     PlatformInitializer.RegisterTypes(container);
                 }).OnAppStart(nameof(LoginPage)).OnInitialized(container => {
 

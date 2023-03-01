@@ -57,6 +57,7 @@
 	  <None Remove="Resources\Fonts\Inter-Regular.ttf" />
 	  <None Remove="Resources\Fonts\Inter-SemiBold.ttf" />
 	  <None Remove="Resources\Fonts\Inter-Thin.ttf" />
+	  <None Remove="Resources\Images\arrow.png" />
 	  <None Remove="Resources\Images\boy.png" />
 	  <None Remove="Resources\Images\email.png" />
 	  <None Remove="Resources\Images\home.png" />

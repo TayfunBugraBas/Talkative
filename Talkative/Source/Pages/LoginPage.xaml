@@ -5,7 +5,7 @@
              Title="LoginPage"
               xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="Automatic"
-             x:Name="LgPage"
+             
             >
     <ContentPage.Content>
     <StackLayout
@@ -47,7 +47,7 @@
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold"
                      VerticalOptions="Start"
-                   
+                   TextColor="Black"
                     ></Label>
                 <Line BackgroundColor="#E056FD"
                       WidthRequest="200"
@@ -60,6 +60,7 @@
                     FontSize="20"
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold"
+                    Text="{Binding PEmail}"
                     >
                     <!--Texte binding yap-->
                 </Entry>
@@ -75,6 +76,7 @@
                     FontSize="20"
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold"
+                    Text="{Binding Ppassword}"
                    >
                     <!--Texte binding yap-->
                 </Entry>
@@ -92,7 +94,7 @@
                     FontFamily="Inter-ExtraBold" 
                     CornerRadius="30"
                     BackgroundColor="#30336B"
-                    Command="{Binding RegisterPageCommand}"    
+                    Command="{Binding LoginCommand}"    
                         ></Button>
                     
                     <Button
@@ -116,15 +118,11 @@
                     FontSize="12"
                     FontAttributes="Bold"
                     FontFamily="Inter-ExtraBold"
-                    
+                    TextColor="Black"
                      
                    
                     >
-                        <Label.Behaviors>
-                            <prism:EventToCommandBehavior>
-                                
-                            </prism:EventToCommandBehavior>
-                        </Label.Behaviors>
+                    
                     </Label>
                     
                     

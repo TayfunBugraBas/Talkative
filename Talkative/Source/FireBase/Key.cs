@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Talkative.Source.FireBase
 {
-    public class Key
+    public static class Key
     {
-        public string webApiKey = "AIzaSyDC7sZn8kTjSnl0AsOwj_zf7vnYAQjs-is";
+        public const string webApiKey = "AIzaSyDC7sZn8kTjSnl0AsOwj_zf7vnYAQjs-is";
     }
 }

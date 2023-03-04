@@ -14,7 +14,7 @@ namespace Talkative.Source.ViewModels
     {
         private readonly INavigationService _service;
         private string _talkTest;
-        private List<string> _speakers = new List<string>();
+        private List<string> _speakers = new();
 
 
         //get set
@@ -29,12 +29,8 @@ namespace Talkative.Source.ViewModels
 
 
         }
-        public void OnAppearing() { 
-            base.OnAppearing();
-           
+   
 
-        }
-      
 
         public ICommand SecondPageCommand { get {
                 return new Command(async () =>

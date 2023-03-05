@@ -11,7 +11,7 @@ namespace Talkative.Source.Interfaces
     public interface IUser
     {
         Task<bool> UserLogin(string email, string password);
-        Task<bool> RegisterUser(UserModel user);
+        Task  <bool> RegisterUser(UserModel user);
         Task<bool> ChangePassword(string password);
         Task<bool> ForgetPassword(string email);
         Task<UserModel> GetUserById(string Id);

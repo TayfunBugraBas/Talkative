@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,15 @@ namespace Talkative.Source.Constants
         public const string MSG_FAIL = "İşleminiz Sırasında Bir Problem Oluştu";
 
         public const string MSG_PASSWORD_OR_EMAIL_WRONG = "Girmiş olduğunuz Şifreniz veya Emailiniz yanlış!";
+
+        public const string MSG_HEADER_WRONG = "Hata!";
+
+        public const string MSG_HEADER_OK = "Tamam!";
+        
+        public const string VERIFY_EMAIL = "Email hesabınızı doğrulayınız!";
+
+
+
 
 
 

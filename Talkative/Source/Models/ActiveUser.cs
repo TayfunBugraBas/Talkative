@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Firebase.Auth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,9 @@ namespace Talkative.Source.Models
 {
     public static class ActiveUser
     {
-        public static string ID { get; set; }
-        public static string Email { get; set; }
-        public static string Password { get; set; }
-        public static string? Adress { get; set; }
-        public static string? PhoneForEmergency { get; set; }
+      public static Models.UserModel CurUser { get; set; }
+      
+      public static FirebaseAuthLink FbUser { get; set; }
+
     }
 }

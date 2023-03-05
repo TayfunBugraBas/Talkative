@@ -7,7 +7,10 @@ using Talkative.Source.Interfaces;
 using Talkative.Source.Models;
 using Firebase.Auth;
 using Firebase.Database;
-
+using Microsoft.Maui.Layouts;
+using Scrypt;
+using Newtonsoft.Json;
+using Firebase.Database.Query;
 
 namespace Talkative.Source.Services
 {
@@ -17,49 +20,156 @@ namespace Talkative.Source.Services
 
         FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FireBase.Key.webApiKey));
 
+        ScryptEncoder scryptEncoder = new ScryptEncoder();  
+
         public UserService()
         {
 
         }
 
-        public Task<bool> AddUser(UserModel user)
+        public async Task<bool> AddUser(UserModel user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                user.Password = scryptEncoder.Encode(user.Password);
+                
+
+                await FbClient.Child("Users").PostAsync(JsonConvert.SerializeObject(user));
+
+                return true;
+
+            }
+            catch {
+            
+               return false;
+            
+            }
         }
 
-        public Task<bool> ChangePassword(string password)
+        public async Task<bool> ChangePassword(string password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var auth = await authProvider.ChangeUserPassword(Models.ActiveUser.FbUser.FirebaseToken, password);
+                var currentUser = Models.ActiveUser.CurUser;
+                var encodedPassword = scryptEncoder.Encode(password);
+                currentUser.Password = encodedPassword;
+                await UpdateUser(currentUser);
+                return true;
+
+            }
+            catch {
+
+                return false;
+            }
+
         }
 
-        public Task<bool> ForgetPassword(string email)
+        public async Task<bool> ForgetPassword(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await authProvider.SendPasswordResetEmailAsync(email);
+
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+
         }
 
-        public Task<List<UserModel>> GetAllUser()
+        public async Task<List<UserModel>> GetAllUser()
         {
-            throw new NotImplementedException();
+            return (await FbClient.Child("Users").OnceAsync<Models.UserModel>()).Select(x => new UserModel
+            {
+
+                ID = x.Object.ID,
+                Email = x.Object.Email,
+                Password = x.Object.Password,
+                Adress = x.Object.Adress,
+                PhoneForEmergency = x.Object.PhoneForEmergency
+ 
+            }).ToList();
+
         }
 
-        public Task<UserModel> GetUserById(string Id)
+        public async Task<UserModel> GetUserById(string Id)
         {
-            throw new NotImplementedException();
+            var users = await GetAllUser();
+
+            return users.Where(x => x.ID == Id).FirstOrDefault();
         }
 
-        public Task<bool> RegisterUser(UserModel user)
+        public async Task<bool> RegisterUser(UserModel user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(user.Email, user.Password);
+                var firebaseUserInfo = await authProvider.UpdateProfileAsync(auth.FirebaseToken, user.Email.ToString(), null);
+                await authProvider.SendEmailVerificationAsync(auth);
+
+                user.ID = auth.User.LocalId;
+                UserModel newUser = user;
+
+
+                await AddUser(newUser);
+                return true;
+            }
+            catch { 
+            
+                return false;
+            }
+
         }
 
-        public Task<bool> UpdateUser(UserModel user)
+        public async Task<bool> UpdateUser(UserModel user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var toUpdatePerson = (await FbClient
+                .Child("Users")
+                .OnceAsync<UserModel>()).Where(a => a.Object.ID == user.ID).FirstOrDefault();
+
+                await FbClient
+                  .Child("Users")
+                  .Child(toUpdatePerson.Key)
+                  .PutAsync(user);
+
+                return true;
+
+            }
+            catch {
+
+                return false;
+            }
         }
 
-        public Task<bool> UserLogin(string email, string password)
+        public async Task<bool> UserLogin(string email, string password)
         {
-            throw new NotImplementedException();
+            try {
+                var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
+                Models.ActiveUser.FbUser = auth;
+                if (Models.ActiveUser.FbUser != null)
+                {
+
+                    return true;
+
+                }
+                else {
+
+                    return false;
+
+                }
+            
+            }
+            catch {
+
+                return false;
+
+            }
+
         }
     }
 }

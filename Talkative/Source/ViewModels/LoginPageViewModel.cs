@@ -45,6 +45,7 @@ namespace Talkative.Source.ViewModels
             set { password = value; RaisePropertyChanged(); RaisePropertyChanged(nameof(PasswordCredantialsValidator)); }
         
         }
+        /*END OF VIEW VARIABLES*/
 
 
         public bool EmailCredentialsValidator
@@ -107,8 +108,29 @@ namespace Talkative.Source.ViewModels
                     {
                         if (EmailCredentialsValidator && PasswordCredantialsValidator)
                         {
-                            
-                            await _Navservice.NavigateAsync(nameof(MainPage));
+
+                            var isOK = await _userService.UserLogin(email, password);
+
+                            if (isOK)
+                            {
+                                Models.ActiveUser.CurUser = await _userService.GetUserById(Models.ActiveUser.FbUser.User.LocalId);/*Mustafadan Firebase Kurallarını Al*/
+
+
+                                if (Models.ActiveUser.FbUser.User.IsEmailVerified == true)
+                                {
+                                    await _Navservice.NavigateAsync(nameof(MainPage));
+                                }
+                                else {
+
+                                    await _PageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_WRONG, Constants.Messages.VERIFY_EMAIL, Constants.Messages.MSG_HEADER_OK);
+                                
+                                }
+                            }
+                            else {
+
+                                await _PageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_WRONG,Constants.Messages.MSG_PASSWORD_OR_EMAIL_WRONG,Constants.Messages.MSG_HEADER_OK);
+                            }
+
 
                         }
 

@@ -12,12 +12,5 @@ namespace Talkative.Source.Models
         public string groupUserID { get; set; }
         public string groupName { get; set; }
         public string groupIMGName { get; set; }
-
-
-
-
-
-
-
     }
 }

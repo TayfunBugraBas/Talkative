@@ -4,6 +4,7 @@
              x:Class="Talkative.Source.Pages.LoginPage"
              Title="LoginPage"
               xmlns:prism="http://prismlibrary.com"
+             Shell.NavBarIsVisible="False"
              prism:ViewModelLocator.AutowireViewModel="Automatic"
              
             >

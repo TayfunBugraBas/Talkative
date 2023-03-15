@@ -18,12 +18,13 @@ namespace Talkative.Source.Services
     {
         private FirebaseClient FbClient = new FirebaseClient("https://talkative-a62ae-default-rtdb.europe-west1.firebasedatabase.app/");
 
-        FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FireBase.Key.webApiKey));
+        FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FireBase.Key.webApiKey.ToString()));
 
         ScryptEncoder scryptEncoder = new ScryptEncoder();  
 
         public UserService()
         {
+
 
         }
 
@@ -119,6 +120,7 @@ namespace Talkative.Source.Services
             }
             catch { 
             
+                
                 return false;
             }
 

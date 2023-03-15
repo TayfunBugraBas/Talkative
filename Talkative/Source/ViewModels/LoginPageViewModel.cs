@@ -118,7 +118,7 @@ namespace Talkative.Source.ViewModels
 
                                 if (Models.ActiveUser.FbUser.User.IsEmailVerified == true)
                                 {
-                                    await _Navservice.NavigateAsync(nameof(MainPage));
+                                    await _Navservice.NavigateAsync(nameof(GroupsPage));
                                 }
                                 else {
 

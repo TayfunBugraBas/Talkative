@@ -1,3 +1,5 @@
+using Talkative.Source.ViewModels;
+
 namespace Talkative.Source.Pages;
 
 public partial class RegisterPage : ContentPage
@@ -6,4 +8,11 @@ public partial class RegisterPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    protected override bool OnBackButtonPressed()
+    {
+
+		base.OnBackButtonPressed();
+		return true;
+
+    }
 }

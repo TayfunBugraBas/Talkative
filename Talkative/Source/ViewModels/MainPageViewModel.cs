@@ -33,7 +33,7 @@ namespace Talkative.Source.ViewModels
 
 
         public ICommand SecondPageCommand { get {
-                return new Command(async () =>
+                return new Command( () =>
                 {
                     //   await _service.NavigateAsync(nameof(GroupsPage));
                     Speakers.Add("asd");

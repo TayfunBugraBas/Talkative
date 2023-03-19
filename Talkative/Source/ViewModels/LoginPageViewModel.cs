@@ -24,7 +24,7 @@ namespace Talkative.Source.ViewModels
             _Navservice = service;
             _PageDialogService = pageDialogService;
         }
-
+        
         /*END OF CONSTRUCTOR*/
 
         private string email;
@@ -79,7 +79,7 @@ namespace Talkative.Source.ViewModels
         }
 
 
-
+        
 
 
 
@@ -90,7 +90,7 @@ namespace Talkative.Source.ViewModels
                 return new Command(async () =>
                 {
                    
-
+                    
                         await _Navservice.NavigateAsync(nameof(RegisterPage));
 
                    

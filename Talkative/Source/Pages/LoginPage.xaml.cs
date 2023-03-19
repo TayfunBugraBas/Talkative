@@ -6,4 +6,11 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    protected override bool OnBackButtonPressed()
+    {
+
+        base.OnBackButtonPressed();
+        return true;
+
+    }
 }

@@ -88,7 +88,9 @@ namespace Talkative.Source.ViewModels
             }
         }
 
-
+        public async  void gback() {
+            await _Navservice.GoBackAsync();
+        }
 
         public ICommand goBack {
             get {

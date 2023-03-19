@@ -1,16 +1,14 @@
 namespace Talkative.Source.Pages;
 
-public partial class MainPage : ContentPage
+public partial class GroupCreatePage : ContentPage
 {
-	public MainPage()
+	public GroupCreatePage()
 	{
 		InitializeComponent();
 	}
     protected override bool OnBackButtonPressed()
     {
-
-        base.OnBackButtonPressed();
+        
         return true;
-
     }
 }

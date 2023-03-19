@@ -11,6 +11,7 @@ public static class PlatformInitializer
     {
 
         containerRegistry.RegisterInstance(typeof(IUser), new UserService());
+        containerRegistry.RegisterInstance(typeof(IGroup), new GroupService());
 
 
 
@@ -19,6 +20,7 @@ public static class PlatformInitializer
         containerRegistry.RegisterForNavigation<GroupsPage,GroupsPageViewModel>();
         containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel> ();
         containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
+        containerRegistry.RegisterForNavigation<GroupCreatePage,GroupCreatePageViewModel>();
 
     }
 }
@@ -40,6 +42,7 @@ public static class MauiProgram
                 }).OnAppStart(nameof(LoginPage)).OnInitialized(container => {
 
                 });
+                
 
             })
             .ConfigureFonts(fonts =>
@@ -51,4 +54,6 @@ public static class MauiProgram
 
         return builder.Build();
     }
+
+    
 }

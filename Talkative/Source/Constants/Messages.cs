@@ -21,7 +21,7 @@ namespace Talkative.Source.Constants
         
         public const string VERIFY_EMAIL = "Email hesabınızı doğrulayınız!";
 
-
+        public const string MSG_EMPTY_ENTRY = "Herhangi bir alan Boş bırakılamaz!";
 
 
 

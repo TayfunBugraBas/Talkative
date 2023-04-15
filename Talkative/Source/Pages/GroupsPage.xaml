@@ -76,10 +76,19 @@
                                 <CollectionView 
                                                  ItemsLayout="HorizontalList"
                                                  ItemsSource="{Binding group}"
-                                   
-                             HorizontalOptions="StartAndExpand"
+                                                 HorizontalOptions="StartAndExpand"
                                                  HeightRequest="30"
+                                                 SelectionMode="Single"
+                                                 SelectedItem="{Binding SelectedGroup}"
+                                                 
                                                 >
+                        <CollectionView.GestureRecognizers>
+
+                            <TapGestureRecognizer Command="{Binding GroupDetailCommand}">
+                                
+                            </TapGestureRecognizer>
+                            
+                        </CollectionView.GestureRecognizers>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate 
                                         >
@@ -147,7 +156,7 @@
                                            CornerRadius="25">
                                         <StackLayout
                                             >
-                                            <Image Source="{Binding groupIMGName}" WidthRequest="40" HeightRequest="40" ></Image>
+                                            <Image Source="{Binding ImageSource}" WidthRequest="40" HeightRequest="40" ></Image>
                                     <Label Text="{Binding groupName}" Margin="18,0,0,0"></Label>
 
                                         </StackLayout>

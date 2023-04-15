@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Talkative.Source.ViewModels
 {
-    public class BaseviewModel : BindableBase, IPageLifecycleAware, INavigatedAware, IInitialize
+    public class BaseviewModel : BindableBase,  INavigatedAware, IInitialize
     {
         public INavigationService _navigationService { get; set; }
         public BaseviewModel(INavigationService navigationService)
@@ -18,16 +18,7 @@ namespace Talkative.Source.ViewModels
             
         }
 
-        public void OnAppearing()
-        {
-
-           
-        }
-
-        public void OnDisappearing()
-        {
-            
-        }
+      
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {

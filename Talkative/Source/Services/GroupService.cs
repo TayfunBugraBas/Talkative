@@ -17,7 +17,7 @@ namespace Talkative.Source.Services
         private FirebaseClient FbClient = new FirebaseClient("https://talkative-a62ae-default-rtdb.europe-west1.firebasedatabase.app/");
 
         FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FireBase.Key.webApiKey.ToString()));
-
+        //çalışmıyor
         public async Task<bool> AddGroupAsync(GroupModel groupMd)
         {
             try
@@ -35,8 +35,8 @@ namespace Talkative.Source.Services
         {
             try
             {
-                var toDelete = (await FbClient.Child("Gropus").OnceAsync<GroupModel>()).Where(x => x.Object.groupUserID == UserID && x.Object.GroupID == GroupId).FirstOrDefault();
-                await FbClient.Child("Gropus").Child(toDelete.Key).DeleteAsync();
+                var toDelete = (await FbClient.Child("Groups").OnceAsync<GroupModel>()).Where(x => x.Object.groupUserID == UserID && x.Object.GroupID == GroupId).FirstOrDefault();
+                await FbClient.Child("Groups").Child(toDelete.Key).DeleteAsync();
                 return true;
             }
             catch
@@ -46,7 +46,7 @@ namespace Talkative.Source.Services
             }
         }
 
-        public async  Task<IList<GroupModel>> GetGroupsByUserID(string userID)
+        public async Task<List<GroupModel>> GetAllGroups()
         {
             return (await FbClient.Child("Groups").OnceAsync<GroupModel>()).Select(x => new GroupModel
             {
@@ -54,10 +54,19 @@ namespace Talkative.Source.Services
                 GroupID = x.Object.GroupID,
                 groupName = x.Object.groupName,
                 groupIMGName = x.Object.groupIMGName,
-                groupUserID = x.Object.groupUserID
+                groupUserID = x.Object.groupUserID,
+                ImageSource = x.Object.groupIMGName
+
+            }).ToList();
+        }
+
+        public async  Task<IList<GroupModel>> GetGroupsByUserID(string userID)
+        {
+            var grouplist = await GetAllGroups();
+
+            return grouplist.Where(x => x.groupUserID == userID).ToList();
 
 
-            }).Where(x => x.groupUserID == userID).ToList();
         }
     }
 }

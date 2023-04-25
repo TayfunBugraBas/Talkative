@@ -4,6 +4,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using Talkative.Source.Interfaces;
 using Talkative.Source.Models;
 using Talkative.Source.Pages;
+
 
 namespace Talkative.Source.ViewModels
 {
@@ -31,12 +33,25 @@ namespace Talkative.Source.ViewModels
             _GroupService = groupService;
            
         }
-
+      
 
         /*End of Constructor*/
-     
+        public ObservableCollection<WordModel> GetWords = new ObservableCollection<WordModel>();
 
-        public ObservableCollection<GroupModel> GetGroups = new ObservableCollection<GroupModel>();
+        public ObservableCollection<WordModel> word
+        {
+            get
+            {
+                return GetWords;
+            }
+            set
+            {
+                GetWords = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private ObservableCollection<GroupModel> GetGroups = new ObservableCollection<GroupModel>();
 
         public ObservableCollection<GroupModel> group
         {
@@ -50,6 +65,22 @@ namespace Talkative.Source.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        private ObservableCollection<GroupModel> GetGroups2 = new ObservableCollection<GroupModel>();
+
+        public ObservableCollection<GroupModel> group2
+        {
+            get
+            {
+                return GetGroups2;
+            }
+            set
+            {
+                GetGroups2 = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private bool _isRefresh;
         public bool IsRefresh
         {
@@ -63,8 +94,9 @@ namespace Talkative.Source.ViewModels
             }
         }
 
-        private GroupModel _selectedGroup;
-        public GroupModel SelectedGroup {
+        private object _selectedGroup;
+        public object GroupSlector
+        {
 
             get {
             return _selectedGroup;
@@ -109,7 +141,7 @@ namespace Talkative.Source.ViewModels
 
             GetGroups = objList;
         }
-
+        
         public void OnDisappearing()
         {
             throw new NotImplementedException();
@@ -133,16 +165,16 @@ namespace Talkative.Source.ViewModels
             }
         
         }
-        public ICommand GroupDetailCommand {
+        public  ICommand GDetailCommand {
 
             get {
 
-                return new Command(async () => {
+                return new Command(  async () => {
 
 
+                    Console.WriteLine("anan");
+                    var z = GroupSlector;
 
-                    throw new NotImplementedException();
-                
                 });
             
             

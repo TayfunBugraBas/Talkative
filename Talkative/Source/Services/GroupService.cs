@@ -17,7 +17,7 @@ namespace Talkative.Source.Services
         private FirebaseClient FbClient = new FirebaseClient("https://talkative-a62ae-default-rtdb.europe-west1.firebasedatabase.app/");
 
         FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FireBase.Key.webApiKey.ToString()));
-        //çalışmıyor
+        
         public async Task<bool> AddGroupAsync(GroupModel groupMd)
         {
             try

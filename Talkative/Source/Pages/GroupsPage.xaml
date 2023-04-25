@@ -5,7 +5,10 @@
              x:Class="Talkative.Source.Pages.GroupsPage"
              Title="GroupsPage"
               xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="Automatic">
+             prism:ViewModelLocator.AutowireViewModel="Automatic"
+             x:Name="GroupPageView"
+             xmlns:CustomStackLayout ="clr-namespace:Talkative.Source.CustomControls"
+             >
     
     <ContentPage.Content>
 
@@ -75,20 +78,13 @@
                                 </StackLayout>
                                 <CollectionView 
                                                  ItemsLayout="HorizontalList"
-                                                 ItemsSource="{Binding group}"
                                                  HorizontalOptions="StartAndExpand"
                                                  HeightRequest="30"
-                                                 SelectionMode="Single"
-                                                 SelectedItem="{Binding SelectedGroup}"
+                                                
+                                                
                                                  
                                                 >
-                        <CollectionView.GestureRecognizers>
-
-                            <TapGestureRecognizer Command="{Binding GroupDetailCommand}">
-                                
-                            </TapGestureRecognizer>
-                            
-                        </CollectionView.GestureRecognizers>
+                        
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate 
                                         >
@@ -98,8 +94,7 @@
                                            VerticalOptions="Center"
                                             HorizontalOptions="Start"
                                            >
-                                                <Label Text="{Binding groupName}" Margin="5,0,0,0" FontSize="20"
-                                                              ></Label>
+                                             
                                             </StackLayout>
 
 
@@ -137,35 +132,40 @@
                                      ItemsLayout="VerticalGrid, 3"
                                      ItemsSource="{Binding group}"
                                     SelectionMode="Single"
-                                 
+                                    SelectedItem="{Binding GroupSlector}"
+                                    SelectionChangedCommand="{Binding GDetailCommand}"
+                                  
                                      >
-                        
+                    
 
-                        <CollectionView.Behaviors>
-                            
-                            
-                           <!--Behavior yazılacak-->
 
-                        </CollectionView.Behaviors>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
 
-                            <Frame BackgroundColor="#D9D9D9"
-                                         WidthRequest="100"
-                                           Margin="0,18,0,0"
-                                           CornerRadius="25">
-                                        <StackLayout
-                                            >
-                                            <Image Source="{Binding ImageSource}" WidthRequest="40" HeightRequest="40" ></Image>
-                                    <Label Text="{Binding groupName}" Margin="18,0,0,0"></Label>
 
-                                        </StackLayout>
 
-                                    </Frame>
-                             
-                            </DataTemplate>
+
+                            <CustomStackLayout:CustomStackLayout BackgroundColor="#D9D9D9"  Padding="10" Margin="10" HeightRequest="120"
+                                           CornerRadius="25"
+                                             >
+
+                                        
+
+
+                                        <Image Source="{Binding ImageSource}" WidthRequest="70" HeightRequest="70" ></Image>
+                                           <Label FontSize="18" Text="{Binding groupName}"  HorizontalOptions="Center"></Label>
+
+                                    
+
+                                    </CustomStackLayout:CustomStackLayout>
+
+                           
+
+                        </DataTemplate>
                         </CollectionView.ItemTemplate>
-                    </CollectionView>
+                   
+                   
+                </CollectionView>
 
              
             </ScrollView>

@@ -1,4 +1,6 @@
 ﻿
+using Talkative.Platforms.Android.CustomControls;
+using Talkative.Source.CustomControls;
 using Talkative.Source.Interfaces;
 using Talkative.Source.Pages;
 using Talkative.Source.Services;
@@ -50,7 +52,13 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
-
+        Microsoft.Maui.Handlers.ElementHandler.ElementMapper.AppendToMapping("customStack", (handler, view) =>
+        {
+            if (view is CustomStackLayout)
+            {
+                StackLayoutMapper.Map(handler, view);
+            }
+        });
 
         return builder.Build();
     }

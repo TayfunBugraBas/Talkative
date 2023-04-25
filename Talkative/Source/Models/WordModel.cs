@@ -12,5 +12,7 @@ namespace Talkative.Source.Models
         public string Word { get; set; }
         public string WordGroupId { get; set; }
         public string wordIMG { get; set; }
+
+        public ImageSource ImageSource { get; set; }
     }
 }

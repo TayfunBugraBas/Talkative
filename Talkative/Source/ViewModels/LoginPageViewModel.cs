@@ -113,7 +113,7 @@ namespace Talkative.Source.ViewModels
 
                             if (isOK)
                             {
-                                Models.ActiveUser.CurUser = await _userService.GetUserById(Models.ActiveUser.FbUser.User.LocalId);/*Mustafadan Firebase Kurallarını Al*/
+                                Models.ActiveUser.CurUser = await _userService.GetUserById(Models.ActiveUser.FbUser.User.LocalId);
 
 
                                 if (Models.ActiveUser.FbUser.User.IsEmailVerified == true)

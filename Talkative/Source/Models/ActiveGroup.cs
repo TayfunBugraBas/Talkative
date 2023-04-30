@@ -8,6 +8,6 @@ namespace Talkative.Source.Models
 {
     public static class ActiveGroup
     {
-       public static Models.GroupModel Active_Group { get; set; }
+       public static GroupModel Active_Group { get; set; }
     }
 }

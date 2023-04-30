@@ -46,6 +46,17 @@ namespace Talkative.Source.Services
             }
         }
 
+      
+      
+        public async  Task<GroupModel> findGroupByGroupId(string GID)
+        {
+            var grouplist = await GetAllGroups();
+
+            GroupModel group = grouplist.Where(x => x.GroupID == GID).FirstOrDefault();
+
+            return group;
+        }
+
         public async Task<List<GroupModel>> GetAllGroups()
         {
             return (await FbClient.Child("Groups").OnceAsync<GroupModel>()).Select(x => new GroupModel

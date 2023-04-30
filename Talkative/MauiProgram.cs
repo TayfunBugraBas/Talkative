@@ -14,6 +14,7 @@ public static class PlatformInitializer
 
         containerRegistry.RegisterInstance(typeof(IUser), new UserService());
         containerRegistry.RegisterInstance(typeof(IGroup), new GroupService());
+        containerRegistry.RegisterInstance(typeof(IWord), new WordService());
 
 
 
@@ -23,7 +24,9 @@ public static class PlatformInitializer
         containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel> ();
         containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
         containerRegistry.RegisterForNavigation<GroupCreatePage,GroupCreatePageViewModel>();
-
+        containerRegistry.RegisterForNavigation<WordsPage,WordsPageViewModel>();
+        containerRegistry.RegisterForNavigation<WordsCreatePage,WordsCreatePageViewModel>();
+        ViewModelLocationProvider.Register<GroupsPage, GroupsPageViewModel>();
     }
 }
 

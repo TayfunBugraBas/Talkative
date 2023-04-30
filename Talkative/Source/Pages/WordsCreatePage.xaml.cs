@@ -6,4 +6,9 @@ public partial class WordsCreatePage : ContentPage
 	{
 		InitializeComponent();
 	}
+    protected override bool OnBackButtonPressed()
+    {
+        base.OnBackButtonPressed();
+        return true;
+    }
 }

@@ -94,8 +94,8 @@ namespace Talkative.Source.ViewModels
             }
         }
 
-        private object _selectedGroup;
-        public object GroupSlector
+        private GroupModel _selectedGroup;
+        public GroupModel GroupSlector
         {
 
             get {
@@ -165,16 +165,17 @@ namespace Talkative.Source.ViewModels
             }
         
         }
-        public  ICommand GDetailCommand {
-
+        public  ICommand GadDetailCommand {
+            
             get {
+               
+                return new  Command(  async (object Item) => {
+                   
+                        var z = Item as GroupModel;
+                        Models.ActiveGroup.Active_Group = z;
 
-                return new Command(  async () => {
-
-
-                    Console.WriteLine("anan");
-                    var z = GroupSlector;
-
+                        await _Navservice.NavigateAsync(nameof(WordsPage));
+                    
                 });
             
             

@@ -11,11 +11,13 @@ namespace Talkative.Source.Interfaces
     {
         public Task<IList<GroupModel>> GetGroupsByUserID(string userID);
 
-
+        public Task<GroupModel> findGroupByGroupId(string GID);
         public Task<bool> DeleteGroupAsync(string GroupId, string UserID);
 
         public Task<bool> AddGroupAsync(GroupModel groupMd);
         Task<List<GroupModel>> GetAllGroups();
+
+       
 
 
 

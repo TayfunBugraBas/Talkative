@@ -23,6 +23,7 @@ namespace Talkative.Source.Constants
 
         public const string MSG_EMPTY_ENTRY = "Herhangi bir alan Boş bırakılamaz!";
 
+        public const string MSG_PHONE_LANG_DOES_NOT_SUPPORT = "Telefonda Dil paketi yok dil paketi yükleyin";
 
 
 

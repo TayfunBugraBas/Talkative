@@ -13,7 +13,6 @@ using Talkative.Source.Pages;
 using Talkative.Source.Services;
 
 
-
 namespace Talkative.Source.ViewModels
 {
     public  class WordsPageViewModel : BaseviewModel, IPageLifecycleAware
@@ -171,14 +170,21 @@ namespace Talkative.Source.ViewModels
 
                     var item = Item as WordModel;
                     var locales  = await TextToSpeech.GetLocalesAsync();
-                    var options = new SpeechOptions
+                    try
                     {
-                        Locale = locales.Single(l=>l.Country == "TR")
-                    };
+                        var options = new SpeechOptions
+                        {
+                            Locale = locales.Single(l => l.Country == "TR" || l.Country == "TUR" || l.Country == "tr" || l.Country == "Tr" || l.Country == "Tur" || l.Country == "tr_TR" || l.Country == "tr-TR")
+                        };
 
-                   await  TextToSpeech.SpeakAsync(item.Word, options);
-                
-   
+                        await TextToSpeech.SpeakAsync(item.Word, options);
+                    }
+                    catch
+                    {
+                        await _PageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_WRONG, Constants.Messages.MSG_PHONE_LANG_DOES_NOT_SUPPORT, Constants.Messages.MSG_HEADER_OK);
+
+                    }
+
                 });
 
             }

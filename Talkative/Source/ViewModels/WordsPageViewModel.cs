@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Android.Media;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +12,8 @@ using Talkative.Source.Models;
 using Talkative.Source.Pages;
 using Talkative.Source.Services;
 
+
+
 namespace Talkative.Source.ViewModels
 {
     public  class WordsPageViewModel : BaseviewModel, IPageLifecycleAware
@@ -19,6 +23,8 @@ namespace Talkative.Source.ViewModels
         private INavigationService _Navservice;
         private IPageDialogService _PageDialogService;
         private IWord _WordService;
+     
+     
 
 
         public WordsPageViewModel(INavigationService service, IUser user, IPageDialogService pageDialogService, IWord wordService) : base(service)
@@ -27,10 +33,11 @@ namespace Talkative.Source.ViewModels
             _Navservice = service;
             _PageDialogService = pageDialogService;
             _WordService = wordService;
-
+           
+            
         }
 
-
+        
         /*End of Constructor*/
         public ObservableCollection<WordModel> GetWords = new ObservableCollection<WordModel>();
 
@@ -137,5 +144,46 @@ namespace Talkative.Source.ViewModels
             }
 
         }
+        
+        public ICommand GoWordCreatePage
+        {
+
+            get
+            {
+
+                return new Command(async () => {
+
+                    await _Navservice.NavigateAsync(nameof(WordsCreatePage));
+                
+                });
+
+
+            }
+
+
+        }
+        public ICommand GetWordsForSoundAndList
+        {
+            get
+            {
+
+                return new Command(async () => {
+
+                    Console.WriteLine("works Fine");
+                   var locales  = await TextToSpeech.GetLocalesAsync();   
+                
+                    SpeechOptions options = new SpeechOptions();
+                
+                    
+
+
+
+                });
+
+            }
+
+
+        }
+       
     }
 }

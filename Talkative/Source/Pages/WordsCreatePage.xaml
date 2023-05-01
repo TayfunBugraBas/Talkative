@@ -2,11 +2,65 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Talkative.Source.Pages.WordsCreatePage"
-             Title="WordsCreatePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="WordsCreatePage"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic">
+
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="WhiteSmoke" >
+
+            <StackLayout
+               
+                Orientation="Horizontal"
+                BackgroundColor="#686DE0"
+                VerticalOptions="Start"
+                
+               >
+
+                <Image
+                        Source="wordofmouth.png"
+                          WidthRequest="30"
+                          HeightRequest="30"
+                         HorizontalOptions="Start"
+                         Margin="10,10,10,10"
+                        >
+                </Image>
+                <Label
+                        Text="Kelime Ekle"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10,0,0,0"
+                        FontFamily="Inter-ExtraBold"
+                        FontSize="Large"
+                        TextColor="WhiteSmoke">
+
+                </Label>
+
+
+
+
+
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                <Image Source="{Binding SelectedImage}" />
+                <Entry Text="{Binding WordName}" Placeholder="Kelime Girin" FontFamily="Inter-ExtraBold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black"></Entry>
+                <Line BackgroundColor="Black" WidthRequest="300" HeightRequest="2"></Line>
+
+                <Button CornerRadius="100" WidthRequest="200" HeightRequest="40" Text="Resim Seç" TextColor="White"  FontFamily="Inter-ExtraBold" BackgroundColor="#30336B" Command="{Binding SelectImage}" Margin="0,10,0,0"></Button>
+                <Button CornerRadius="100" WidthRequest="200" HeightRequest="40" Text="Kelimeyi Ekle" TextColor="White"  FontFamily="Inter-ExtraBold" BackgroundColor="#30336B" Margin="0,10,0,0"  Command="{Binding AddWord}"></Button>
+
+
+            </StackLayout>
+
+
+
+
+
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
 </ContentPage>

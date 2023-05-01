@@ -23,7 +23,7 @@ namespace Talkative.Source.ViewModels
         private INavigationService _Navservice;
         private IPageDialogService _PageDialogService;
         private IGroup _GroupService;
-    
+ 
 
         public GroupsPageViewModel(INavigationService service,IUser user, IPageDialogService pageDialogService, IGroup groupService) : base(service)
         {
@@ -31,7 +31,7 @@ namespace Talkative.Source.ViewModels
             _Navservice = service;
             _PageDialogService = pageDialogService;
             _GroupService = groupService;
-           
+         
         }
       
 

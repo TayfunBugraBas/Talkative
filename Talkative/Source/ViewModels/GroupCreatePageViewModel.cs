@@ -184,7 +184,7 @@ namespace Talkative.Source.ViewModels
                         {
 
                             await _pageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_OK, Constants.Messages.MSG_SUCCESS, Constants.Messages.MSG_HEADER_OK);
-                            await _navigationService.NavigateAsync(nameof(MainPage));
+                            await _navigationService.GoBackAsync();
 
                         }
                         else {

@@ -2,7 +2,7 @@ namespace Talkative.Source.Pages;
 
 public partial class WordsPage : ContentPage
 {
-	private INavigationService _navigationService;
+	private readonly INavigationService _navigationService;
 	public WordsPage(INavigationService navigation)
 	{
 		InitializeComponent();

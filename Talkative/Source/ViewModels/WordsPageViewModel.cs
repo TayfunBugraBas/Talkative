@@ -167,21 +167,18 @@ namespace Talkative.Source.ViewModels
             get
             {
 
-                return new Command(async () => {
+                return new Command(async (object Item) => {
 
-                    Console.WriteLine("works Fine");
-                   var locales  = await TextToSpeech.GetLocalesAsync();
+                    var item = Item as WordModel;
+                    var locales  = await TextToSpeech.GetLocalesAsync();
                     var options = new SpeechOptions
                     {
                         Locale = locales.Single(l=>l.Country == "TR")
                     };
 
-                   await  TextToSpeech.SpeakAsync("selam", options);
+                   await  TextToSpeech.SpeakAsync(item.Word, options);
                 
-                    
-
-
-
+   
                 });
 
             }

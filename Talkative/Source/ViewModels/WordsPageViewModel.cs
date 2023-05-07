@@ -149,7 +149,7 @@ namespace Talkative.Source.ViewModels
 
                 return new Command(async () =>
                 {
-                    await _Navservice.GoBackAsync();
+                    await _Navservice.NavigateAsync(nameof(GroupsPage));
 
 
                 });
@@ -167,6 +167,23 @@ namespace Talkative.Source.ViewModels
 
                     await _Navservice.NavigateAsync(nameof(WordsCreatePage));
                 
+                });
+
+
+            }
+
+
+        }
+        public ICommand GoWordDeletePage
+        {
+
+            get
+            {
+
+                return new Command(async () => {
+
+                    await _Navservice.NavigateAsync(nameof(WordDeletePage));
+
                 });
 
 

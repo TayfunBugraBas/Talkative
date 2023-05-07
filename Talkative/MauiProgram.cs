@@ -26,7 +26,8 @@ public static class PlatformInitializer
         containerRegistry.RegisterForNavigation<GroupCreatePage,GroupCreatePageViewModel>();
         containerRegistry.RegisterForNavigation<WordsPage,WordsPageViewModel>();
         containerRegistry.RegisterForNavigation<WordsCreatePage,WordsCreatePageViewModel>();
-        containerRegistry.RegisterForNavigation<GroupDeletePage, GroupDeletePageViewModel>();
+        containerRegistry.RegisterForNavigation<GroupDeletePageV2,GroupDeletePageViewModel>();  
+        containerRegistry.RegisterForNavigation<WordDeletePage,WordDeletePageViewModel>();
         ViewModelLocationProvider.Register<GroupsPage, GroupsPageViewModel>();
     }
 }

@@ -6,9 +6,5 @@ public partial class GroupDeletePage : ContentPage
 	{
 		InitializeComponent();
 	}
-    protected override bool OnBackButtonPressed()
-    {
-
-        return true;
-    }
+    
 }

@@ -230,7 +230,7 @@ namespace Talkative.Source.ViewModels
 
                 return new Command(async () =>
                 {
-                    await _Navservice.NavigateAsync(nameof(GroupDeletePage));
+                    await _Navservice.NavigateAsync(nameof(GroupDeletePageV2));
 
 
                 });

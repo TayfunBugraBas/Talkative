@@ -12,7 +12,7 @@ public partial class WordsPage : ContentPage
 	}
     protected override bool OnBackButtonPressed()
     {
-		_navigationService.GoBackAsync();
+		_navigationService.NavigateAsync(nameof(GroupsPage));
         base.OnBackButtonPressed();
         return true;
     }

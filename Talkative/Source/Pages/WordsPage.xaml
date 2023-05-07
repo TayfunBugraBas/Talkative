@@ -54,6 +54,14 @@
                     Command="{Binding GoWordCreatePage}">
 
                 </Button>
+                <Button
+                    Text="Kelime Sil"
+                    HeightRequest="40"
+                    CornerRadius="100"
+                    
+                    Command="{Binding GoWordDeletePage}">
+
+                </Button>
 
 
 

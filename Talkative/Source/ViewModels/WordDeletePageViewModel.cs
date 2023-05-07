@@ -10,58 +10,48 @@ using Talkative.Source.Models;
 
 namespace Talkative.Source.ViewModels
 {
-    public class GroupDeletePageViewModel: BaseviewModel,IPageLifecycleAware
+    public class WordDeletePageViewModel: BaseviewModel,IPageLifecycleAware
     {
 
         private IUser _userService;
         private INavigationService _Navservice;
         private IPageDialogService _PageDialogService;
         private IGroup _GroupService;
-        public GroupDeletePageViewModel(INavigationService service, IUser user, IPageDialogService pageDialogService, IGroup groupService) :base(service)
+        private IWord _WordService;
+        public WordDeletePageViewModel(INavigationService service, IUser user, IPageDialogService pageDialogService, IGroup groupService, IWord wordService) : base(service)
         {
             _userService = user;
             _Navservice = service;
             _PageDialogService = pageDialogService;
             _GroupService = groupService;
+            _WordService = wordService;
         }
-        private GroupModel _selectedGroup;
-        public GroupModel GroupSlector
-        {
+        public ObservableCollection<WordModel> GetWords = new ObservableCollection<WordModel>();
 
-            get
-            {
-                return _selectedGroup;
-            }
-            set
-            {
-                _selectedGroup = value; RaisePropertyChanged();
-            }
-        }
-
-        private ObservableCollection<GroupModel> GetGroups = new ObservableCollection<GroupModel>();
-
-        public ObservableCollection<GroupModel> group
+        public ObservableCollection<WordModel> word
         {
             get
             {
-                return GetGroups;
+                return GetWords;
             }
             set
             {
-                GetGroups = value;
+                GetWords = value;
                 RaisePropertyChanged();
             }
         }
         public async void OnAppearing()
         {
-            var objList = new ObservableCollection<GroupModel>();
-            GetGroups.Clear();
-            var AllGroupsForUser = await _GroupService.GetGroupsByUserID(Models.ActiveUser.CurUser.ID);
-            foreach (var item in AllGroupsForUser)
+            var objList = new ObservableCollection<WordModel>();
+            GetWords.Clear();
+            var AllWordsForUser = await _WordService.GetWordsByGroupID(Models.ActiveGroup.Active_Group.GroupID);
+            foreach (var item in AllWordsForUser)
             {
                 objList.Add(item);
             }
-            group = objList;
+            word = objList;
+           
+           
         }
 
         public void OnDisappearing()
@@ -86,26 +76,25 @@ namespace Talkative.Source.ViewModels
         }
         private async void Refresh()
         {
-            var objList = new ObservableCollection<GroupModel>();
-            GetGroups.Clear();
-            var AllGroupsForUser = await _GroupService.GetGroupsByUserID(Models.ActiveUser.CurUser.ID);
-            foreach (var item in AllGroupsForUser)
+            var objList = new ObservableCollection<WordModel>();
+            GetWords.Clear();
+            var AllWordsForUser = await _WordService.GetWordsByGroupID(Models.ActiveGroup.Active_Group.GroupID);
+            foreach (var item in AllWordsForUser)
             {
                 objList.Add(item);
             }
-            group = objList;
-            
+            word = objList;
         }
 
-        public ICommand DeleteGroup
+        public ICommand DeleteWord
         {
             get
             {
                 return new Command(async (object item) => {
                     try
                     {
-                        var xitem = item as GroupModel;
-                        await _GroupService.DeleteGroupAsync(xitem.GroupID, Models.ActiveUser.CurUser.ID);
+                        var xitem = item as WordModel;
+                        await _WordService.DeleteWordAsync(xitem.Id, Models.ActiveGroup.Active_Group.GroupID);
                         await _PageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_OK, Constants.Messages.MSG_SUCCESS, Constants.Messages.MSG_HEADER_OK);
                         Refresh();
                     }

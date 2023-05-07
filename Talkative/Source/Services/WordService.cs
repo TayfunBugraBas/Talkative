@@ -5,6 +5,7 @@ using Firebase.Database.Query;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -19,6 +20,25 @@ namespace Talkative.Source.Services
         private FirebaseClient FbClient = new FirebaseClient("https://talkative-a62ae-default-rtdb.europe-west1.firebasedatabase.app/");
 
         FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FireBase.Key.webApiKey.ToString()));
+        ObservableCollection<WordModel> list = new ObservableCollection<WordModel>();
+
+        public bool addToList(WordModel wordMd)
+        {
+            try
+            {
+                
+                list.Add(wordMd);
+                ActiveWords.TalkingWords = list;
+                
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> AddWordAsync(WordModel wordMd)
         {
 
@@ -68,6 +88,20 @@ namespace Talkative.Source.Services
             var grouplist = await GetAllWords();
 
             return grouplist.Where(x => x.WordGroupId == groupID).ToList();
+        }
+
+        public bool removeFromListLastWord()
+        {
+            try
+            {
+                list.RemoveAt(list.Count - 1);
+                ActiveWords.TalkingWords = list;
+                return true;
+            }
+            catch {
+
+                return false;
+            }
         }
     }
 }

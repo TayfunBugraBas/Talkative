@@ -1,4 +1,4 @@
-﻿using Android.SE.Omapi;
+﻿
 using Prism.Navigation;
 using Prism.Services;
 using System;

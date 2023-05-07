@@ -23,14 +23,16 @@ namespace Talkative.Source.ViewModels
         private INavigationService _Navservice;
         private IPageDialogService _PageDialogService;
         private IGroup _GroupService;
+        private IWord _WordService;
  
 
-        public GroupsPageViewModel(INavigationService service,IUser user, IPageDialogService pageDialogService, IGroup groupService) : base(service)
+        public GroupsPageViewModel(INavigationService service,IUser user, IPageDialogService pageDialogService, IGroup groupService, IWord wordService) : base(service)
         {
             _userService = user;
             _Navservice = service;
             _PageDialogService = pageDialogService;
             _GroupService = groupService;
+            _WordService = wordService;
          
         }
       
@@ -80,6 +82,20 @@ namespace Talkative.Source.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public ObservableCollection<WordModel> GetSelectedWords = new ObservableCollection<WordModel>();
+
+        public ObservableCollection<WordModel> wordSelected
+        {
+            get
+            {
+                return GetSelectedWords;
+            }
+            set
+            {
+                GetSelectedWords = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private bool _isRefresh;
         public bool IsRefresh
@@ -114,8 +130,8 @@ namespace Talkative.Source.ViewModels
         
         public async void OnAppearing()
         {
-           
 
+            Refresh();
             var objList = new ObservableCollection<GroupModel>();
             GetGroups.Clear();
             var AllGroupsForUser = await _GroupService.GetGroupsByUserID(Models.ActiveUser.CurUser.ID);
@@ -124,34 +140,42 @@ namespace Talkative.Source.ViewModels
                 objList.Add(item);
             }
             group = objList;
-
+            wordSelected = Models.ActiveWords.TalkingWords;
 
         }
 
        
-        private async void Refresh()
+        private async  void Refresh()
         {
             var objList = new ObservableCollection<GroupModel>();
             GetGroups.Clear();
-            var AllGroupsForUser = await  _GroupService.GetGroupsByUserID(Models.ActiveUser.CurUser.ID);
+            var AllGroupsForUser = await _GroupService.GetGroupsByUserID(Models.ActiveUser.CurUser.ID);
             foreach (var item in AllGroupsForUser)
             {
                 objList.Add(item);
             }
-
-            GetGroups = objList;
+            group = objList;
+            wordSelected = Models.ActiveWords.TalkingWords;
         }
         
-        public void OnDisappearing()
+        public async  void OnDisappearing()
         {
-            throw new NotImplementedException();
+            var objList = new ObservableCollection<GroupModel>();
+            GetGroups.Clear();
+            var AllGroupsForUser = await _GroupService.GetGroupsByUserID(Models.ActiveUser.CurUser.ID);
+            foreach (var item in AllGroupsForUser)
+            {
+                objList.Add(item);
+            }
+            group = objList;
+            wordSelected = Models.ActiveWords.TalkingWords;
         }
 
         public ICommand RefreshCommand {
 
             get {
 
-                return new Command( () =>
+                return new Command( async () =>
                 {
                     if(IsRefresh == true) { 
                         
@@ -198,7 +222,72 @@ namespace Talkative.Source.ViewModels
             }
 
         }
+        public ICommand GoGroupDeletePage
+        {
 
+            get
+            {
+
+                return new Command(async () =>
+                {
+                    await _Navservice.NavigateAsync(nameof(GroupDeletePage));
+
+
+                });
+            }
+
+        }
+        public ICommand GetSoundInList
+        {
+            get
+            {
+
+                return new Command(async () => {
+                    ObservableCollection<WordModel> wordModels = new ObservableCollection<WordModel>();
+                    wordModels = Models.ActiveWords.TalkingWords;
+                    var locales = await TextToSpeech.GetLocalesAsync();
+                    try
+                    {
+                        var options = new SpeechOptions
+                        {
+                            Locale = locales.Single(l => l.Country == "TR" || l.Country == "TUR" || l.Country == "tr" || l.Country == "Tr" || l.Country == "Tur" || l.Country == "tr_TR" || l.Country == "tr-TR")
+                        };
+
+
+                        foreach (var item in wordModels)
+                        {
+                            await TextToSpeech.SpeakAsync(item.Word, options);
+                        }
+                    }
+                    catch
+                    {
+                        await _PageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_WRONG, Constants.Messages.MSG_PHONE_LANG_DOES_NOT_SUPPORT, Constants.Messages.MSG_HEADER_OK);
+
+                    }
+
+
+                });
+
+            }
+
+
+        }
+
+        public ICommand DeleteLastAdded
+        {
+            get
+            {
+
+                return new Command(async () => {
+
+                    _WordService.removeFromListLastWord();
+
+                });
+
+            }
+
+
+        }
 
 
 

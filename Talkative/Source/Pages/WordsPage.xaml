@@ -73,10 +73,11 @@
                 <HorizontalStackLayout  HorizontalOptions="Fill"  VerticalOptions="Fill">
                     <StackLayout Orientation="Horizontal" 
                                               HorizontalOptions="Start" >
-                        <ImageButton Source="test.png" HeightRequest="30" WidthRequest="30" ></ImageButton>
-                        <ImageButton Source="polygon1.png" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0" ></ImageButton>
+                        <ImageButton Source="test.png" HeightRequest="30" WidthRequest="30" Command="{Binding DeleteLastAdded}" ></ImageButton>
+                        <ImageButton Source="polygon1.png" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0" Command="{Binding GetSoundInList}"></ImageButton>
                     </StackLayout>
                     <CollectionView 
+                                                 ItemsSource="{Binding wordSelected}"   
                                                  ItemsLayout="HorizontalList"
                                                  HorizontalOptions="StartAndExpand"
                                                  HeightRequest="30"
@@ -94,6 +95,7 @@
                                            VerticalOptions="Center"
                                             HorizontalOptions="Start"
                                            >
+                                    <Label Text="{Binding Word}" Margin="5,0,0,0" FontSize="20" TextColor="Black"></Label>
 
                                 </StackLayout>
 

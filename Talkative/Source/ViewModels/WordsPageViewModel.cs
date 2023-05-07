@@ -1,4 +1,4 @@
-﻿using Android.Media;
+﻿
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
@@ -53,6 +53,24 @@ namespace Talkative.Source.ViewModels
             }
         }
 
+        /*End of Constructor*/
+        public ObservableCollection<WordModel> GetSelectedWords = new ObservableCollection<WordModel>();
+
+        public ObservableCollection<WordModel> wordSelected
+        {
+            get
+            {
+                return GetSelectedWords;
+            }
+            set
+            {
+                GetSelectedWords = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+       
 
         private WordModel _selectedWord;
         public WordModel WordSlector
@@ -109,6 +127,7 @@ namespace Talkative.Source.ViewModels
             }
             word = objList;
             GMansName = Models.ActiveGroup.Active_Group.groupName;
+            wordSelected = Models.ActiveWords.TalkingWords;
         }
 
         public void OnDisappearing()
@@ -118,14 +137,8 @@ namespace Talkative.Source.ViewModels
 
         private async void Refresh()
         {
-            var objList = new ObservableCollection<WordModel>();
-            GetWords.Clear();
-            var AllWordsForUser = await _WordService.GetWordsByGroupID(Models.ActiveGroup.Active_Group.GroupID);
-            foreach (var item in AllWordsForUser)
-            {
-                objList.Add(item);
-            }
-            word = objList;
+           
+            wordSelected = Models.ActiveWords.TalkingWords;
         }
 
         public ICommand GoBack
@@ -176,8 +189,11 @@ namespace Talkative.Source.ViewModels
                         {
                             Locale = locales.Single(l => l.Country == "TR" || l.Country == "TUR" || l.Country == "tr" || l.Country == "Tr" || l.Country == "Tur" || l.Country == "tr_TR" || l.Country == "tr-TR")
                         };
+                      
+                        _WordService.addToList(item);
 
                         await TextToSpeech.SpeakAsync(item.Word, options);
+                        Refresh();
                     }
                     catch
                     {
@@ -191,6 +207,57 @@ namespace Talkative.Source.ViewModels
 
 
         }
-       
+
+        public ICommand GetSoundInList
+        {
+            get
+            {
+
+                return new Command(async ()  => {
+                    ObservableCollection<WordModel> wordModels = new ObservableCollection<WordModel>();
+                    wordModels = Models.ActiveWords.TalkingWords;
+                    var locales = await TextToSpeech.GetLocalesAsync();
+                    try
+                    {
+                        var options = new SpeechOptions
+                        {
+                            Locale = locales.Single(l => l.Country == "TR" || l.Country == "TUR" || l.Country == "tr" || l.Country == "Tr" || l.Country == "Tur" || l.Country == "tr_TR" || l.Country == "tr-TR")
+                        };
+
+
+                        foreach (var item in wordModels) {
+                            await TextToSpeech.SpeakAsync(item.Word, options);
+                        }
+                    }
+                    catch
+                    {
+                        await _PageDialogService.DisplayAlertAsync(Constants.Messages.MSG_HEADER_WRONG, Constants.Messages.MSG_PHONE_LANG_DOES_NOT_SUPPORT, Constants.Messages.MSG_HEADER_OK);
+
+                    }
+
+
+                });
+
+            }
+
+
+        }
+
+        public ICommand DeleteLastAdded
+        {
+            get
+            {
+
+                return new Command(async () => {
+
+                    _WordService.removeFromListLastWord();
+
+                });
+
+            }
+
+
+        }
+
     }
 }

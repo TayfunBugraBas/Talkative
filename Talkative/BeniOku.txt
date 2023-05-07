@@ -1,0 +1,3 @@
+bu dosya sadece kaynak kodları içermektedir projenin geri kalanı eklendiğinde proje 20 mb sınırını aşmaktadır ama buada bulunab github linkinden tamamını indirebilirsiniz
+
+https://github.com/TayfunBugraBas/Talkative

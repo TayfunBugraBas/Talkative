@@ -1,18 +1,14 @@
 namespace Talkative.Source.Pages;
 
-public partial class GroupsPage : ContentPage
+public partial class GroupDeletePage : ContentPage
 {
-	public GroupsPage()
+	public GroupDeletePage()
 	{
 		InitializeComponent();
 	}
     protected override bool OnBackButtonPressed()
     {
-       
+
         return true;
     }
-
-    
-
-
 }

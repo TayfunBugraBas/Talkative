@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Talkative.Source.Pages.GroupDeletePage"
+             Title="GroupDeletePage"
+              xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="Automatic">
+    
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="WhiteSmoke" >
+
+            <StackLayout
+               
+                Orientation="Horizontal"
+                BackgroundColor="#686DE0"
+                VerticalOptions="Start"
+                
+               >
+
+                <ImageButton
+                        Source="arrow.png"
+                          WidthRequest="30"
+                          HeightRequest="30"
+                         HorizontalOptions="Start"
+                         Margin="10,10,10,10"
+                    Command="{Binding GoBack}"
+                        >
+                </ImageButton>
+                <Label
+                        Text="Grup Sil"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Margin="10,0,0,0"
+                        FontFamily="Inter-ExtraBold"
+                        FontSize="Large"
+                        TextColor="WhiteSmoke">
+
+                </Label>
+
+
+
+
+
+            </StackLayout>
+
+            <CollectionView
+                ItemsSource="{Binding group}"
+                SelectionMode="Single"
+                SelectedItem="{Binding GroupSlector}"
+                >
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <HorizontalStackLayout>
+
+                            <Label Text="{Binding groupName}" TextColor="Black" Margin="10" FontSize="36"  FontFamily="Inter-ExtraBold"></Label>
+                            <Button Command="{Binding DeleteGroup}" CommandParameter="{Binding .}" Text="Grubu Sil" BackgroundColor="Red" TextColor="WhiteSmoke" WidthRequest="100" HeightRequest="40" FontSize="16"  FontFamily="Inter-ExtraBold"></Button>
+                            
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                    
+                    
+                </CollectionView.ItemTemplate>
+                
+                
+                
+            </CollectionView>
+
+
+
+
+
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

@@ -48,7 +48,9 @@
 
                             </Label>
 
-                            <Button
+                       
+
+                             <Button
                     Text="Grup Ekle"
                     HeightRequest="40"
                     CornerRadius="100"
@@ -57,27 +59,63 @@
 
                             </Button>
 
+                <Button
+                        Text="Grup Sil"
+                        HeightRequest="40"
+                        CornerRadius="100"
+                      
+                        Command="{Binding GoGroupDeletePage}">
+
+                </Button>
 
 
-                        </StackLayout>
+            </StackLayout>
 
 
                         <Frame
-                            BackgroundColor="#D9D9D9"
-                            CornerRadius="100"
-                            HorizontalOptions="FillAndExpand"
-                            Margin="10,20,10,20"
-                            Padding="0"
-                            HeightRequest="70"
-                            WidthRequest="400"
-                            >
+                                        BackgroundColor="#D9D9D9"
+                                        CornerRadius="100"
+                                        HorizontalOptions="FillAndExpand"
+                                        Margin="10,20,10,20"
+                                        Padding="0"
+                                        HeightRequest="70"
+                                        WidthRequest="400"
+                                        >
 
                             <HorizontalStackLayout  HorizontalOptions="Fill"  VerticalOptions="Fill">
                                 <StackLayout Orientation="Horizontal" 
-                                              HorizontalOptions="Start" >
-                                    <ImageButton Source="test.png" HeightRequest="30" WidthRequest="30" ></ImageButton>
-                                    <ImageButton Source="polygon1.png" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0" ></ImageButton>
+                                                          HorizontalOptions="Start" >
+                                    <ImageButton Source="test.png" HeightRequest="30" WidthRequest="30" Command="{Binding DeleteLastAdded}" ></ImageButton>
+                                    <ImageButton Source="polygon1.png" HeightRequest="20" WidthRequest="20" Margin="10,0,0,0" Command="{Binding GetSoundInList}"></ImageButton>
                                 </StackLayout>
+                                <CollectionView 
+                                                             ItemsSource="{Binding wordSelected}"   
+                                                             ItemsLayout="HorizontalList"
+                                                             HorizontalOptions="StartAndExpand"
+                                                             HeightRequest="30"
+                                                
+                                                
+                                                 
+                                                            >
+
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate 
+                                                    >
+
+
+                                            <StackLayout
+                                                       VerticalOptions="Center"
+                                                        HorizontalOptions="Start"
+                                                       >
+                                                <Label Text="{Binding Word}" Margin="5,0,0,0" FontSize="20" TextColor="Black"></Label>
+
+                                            </StackLayout>
+
+
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
 
 
 
@@ -119,7 +157,7 @@
                                                                  
                                              >
                                         <CustomStackLayout:CustomStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.GadDetailCommand, Source={x:Reference GroupPageView}}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                            <TapGestureRecognizer  Command="{Binding Path=BindingContext.GadDetailCommand, Source={x:Reference GroupPageView}}" CommandParameter="{Binding .}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                                         </CustomStackLayout:CustomStackLayout.GestureRecognizers>
 
 
